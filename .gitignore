@@ -1,0 +1,27 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Eclipse #
+.settings
+.project
+.classpath
+.studio
+target
+
+# Spring #
+.springBeans
+
+# Apple # 
+.DS_Store
+
+# Intellij #
+.idea
+*.iml
+*.log
+
+# logback
+logback.out.xml
