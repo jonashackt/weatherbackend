@@ -15,10 +15,10 @@ import de.codecentric.soap.internalmodel.GeneralOutlook;
 import de.codecentric.soap.internalmodel.Weather;
 
 @RestController
-@RequestMapping("/weatherbackend")
+@RequestMapping("/weatherbackend/general/outlook")
 public class Controller {
     
-    @RequestMapping(path="/general/outlook", method=RequestMethod.POST, produces="application/json")
+    @RequestMapping(method=RequestMethod.POST, produces="application/json")
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody GeneralOutlook generateGeneralOutlook(@RequestBody Weather weather) throws JsonProcessingException {
         System.out.println("Called Backend");
