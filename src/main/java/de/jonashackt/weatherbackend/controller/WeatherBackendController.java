@@ -23,7 +23,7 @@ public class WeatherBackendController {
         return IncredibleLogic.generateGeneralOutlook();
     }
 
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/{name}", method = RequestMethod.GET, produces = "text/plain")
     public String whatsTheSenseInThat(@PathVariable("name") String name) {
         return "Hello " + name + "! This is a RESTful HttpService written in Spring. Try to use some other HTTP verbs (don´t say 'methods' :P ) :)";
     }

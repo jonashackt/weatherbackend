@@ -73,7 +73,7 @@ public class WeatherBackendApplicationTests {
     private void httpGetWithSimpleUrlParameter() throws UnirestException {
         String name = "Paul";
 
-        HttpResponse<String> greeting = Unirest.get("http://localhost:8080/weatherbackend/{name}").routeParam("name", name).asObject(String.class);
+        HttpResponse<String> greeting = Unirest.get("http://localhost:8080/weatherbackend/{name}").header("accept", "text/plain").routeParam("name", name).asObject(String.class);
 
         assertThat(greeting.getBody(), containsString(" This is a RESTful HttpService written in Spring"));
     }
