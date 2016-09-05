@@ -1,6 +1,7 @@
 package de.jonashackt.weatherbackend;
 
 import static com.jayway.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -9,7 +10,9 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import org.apache.http.HttpStatus;
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -62,6 +65,37 @@ public class WeatherBackendApplicationTests {
 	@Test
 	public void testWithUniRest() throws Exception {
 
+	    httpGetWithSimpleUrlParameter();
+
+        httpPostWithObjectInAndOutMapping();
+	}
+
+    private void httpGetWithSimpleUrlParameter() throws UnirestException {
+        String name = "Paul";
+
+        HttpResponse<String> greeting = Unirest.get("http://localhost:8080/weatherbackend/{name}").routeParam("name", name).asObject(String.class);
+
+        assertThat(greeting.getBody(), containsString(" This is a RESTful HttpService written in Spring"));
+    }
+
+    private void httpPostWithObjectInAndOutMapping() throws com.mashape.unirest.http.exceptions.UnirestException {
+        Weather weather = new Weather();
+        weather.setFlagColor("blue");
+        weather.setPostalCode("99425");
+        weather.setProduct(Product.ForecastBasic);
+
+        HttpResponse<GeneralOutlook> generalOutlookHttpResponse = Unirest.post("http://localhost:8080/weatherbackend/general/outlook")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .body(weather)
+                .asObject(GeneralOutlook.class);
+
+        assertEquals("Weimar", generalOutlookHttpResponse.getBody().getCity());
+    }
+
+    @Before
+    public void setUp() {
+        // Configure your wanted ObjectMapper, here we take jackson :)
         Unirest.setObjectMapper(new ObjectMapper() {
             private com.fasterxml.jackson.databind.ObjectMapper jacksonObjectMapper
                     = new com.fasterxml.jackson.databind.ObjectMapper();
@@ -85,17 +119,5 @@ public class WeatherBackendApplicationTests {
             }
         });
 
-        Weather weather = new Weather();
-        weather.setFlagColor("blue");
-        weather.setPostalCode("99425");
-        weather.setProduct(Product.ForecastBasic);
-
-        HttpResponse<GeneralOutlook> generalOutlookHttpResponse = Unirest.post("http://localhost:8080/weatherbackend/general/outlook")
-                .header("accept", "application/json")
-                .header("Content-Type", "application/json")
-                .body(weather)
-                .asObject(GeneralOutlook.class);
-
-        assertEquals("Weimar", generalOutlookHttpResponse.getBody().getCity());
-	}
+    }
 }
