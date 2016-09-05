@@ -41,6 +41,13 @@
 			<version>2.7.0</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- UniRest REST library http://unirest.io/java.html -->
+		<dependency>
+			<groupId>com.mashape.unirest</groupId>
+			<artifactId>unirest-java</artifactId>
+			<version>1.4.9</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
