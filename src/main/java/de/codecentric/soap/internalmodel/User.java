@@ -2,6 +2,14 @@ package de.codecentric.soap.internalmodel;
 
 public class User {
 
+    public User(int age, int contribution, MethodOfPayment methodOfPayment) {
+        this.age = age;
+        this.contribution = contribution;
+        this.methodOfPayment = methodOfPayment;
+    }
+
+    public User() {};
+
     private int age;
     private int contribution;
     private MethodOfPayment methodOfPayment;
