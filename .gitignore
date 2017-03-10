@@ -12,9 +12,6 @@
 .studio
 target
 
-# Spring #
-.springBeans
-
 # Apple # 
 .DS_Store
 
@@ -25,3 +22,6 @@ target
 
 # logback
 logback.out.xml
+.springBeans
+src/main/resources/static/
+src/main/resources/templates/

@@ -1,4 +1,4 @@
-package de.jonashackt.weatherbackend;
+package de.jonashackt.edge.weatherbackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

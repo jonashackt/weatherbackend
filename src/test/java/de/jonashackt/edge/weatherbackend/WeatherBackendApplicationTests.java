@@ -1,4 +1,4 @@
-package de.jonashackt.weatherbackend;
+package de.jonashackt.edge.weatherbackend;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -47,7 +47,7 @@ public class WeatherBackendApplicationTests {
 	        .contentType(ContentType.JSON)
             .body(weather)
         .when() // can be ommited when GET only
-            .post("http://localhost:8080/weatherbackend/general/outlook")
+            .post("http://localhost:8080/weather/general/outlook")
         .then()
             .statusCode(HttpStatus.SC_OK)
             .contentType(ContentType.JSON)
@@ -56,7 +56,7 @@ public class WeatherBackendApplicationTests {
 	    
 	    GeneralOutlook outlook = given() // can be ommited when GET only
 	            .contentType(ContentType.JSON)
-	            .body(weather).post("http://localhost:8080/weatherbackend/general/outlook").as(GeneralOutlook.class);
+	            .body(weather).post("http://localhost:8080/weather/general/outlook").as(GeneralOutlook.class);
 	    
 	    assertEquals("Weimar", outlook.getCity());
     }
@@ -72,7 +72,7 @@ public class WeatherBackendApplicationTests {
     private void httpGetWithSimpleUrlParameter() throws UnirestException {
         String name = "Paul";
 
-        HttpResponse<String> greeting = Unirest.get("http://localhost:8080/weatherbackend/{name}").header("accept", "text/plain").routeParam("name", name).asObject(String.class);
+        HttpResponse<String> greeting = Unirest.get("http://localhost:8080/weather/{name}").header("accept", "text/plain").routeParam("name", name).asObject(String.class);
 
         assertThat(greeting.getBody(), containsString(" This is a RESTful HttpService written in Spring"));
     }
@@ -83,7 +83,7 @@ public class WeatherBackendApplicationTests {
         weather.setPostalCode("99425");
         weather.setProduct(Product.ForecastBasic);
 
-        HttpResponse<GeneralOutlook> generalOutlookHttpResponse = Unirest.post("http://localhost:8080/weatherbackend/general/outlook")
+        HttpResponse<GeneralOutlook> generalOutlookHttpResponse = Unirest.post("http://localhost:8080/weather/general/outlook")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .body(weather)

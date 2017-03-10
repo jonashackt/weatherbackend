@@ -1,4 +1,4 @@
-package de.jonashackt.weatherbackend.controller;
+package de.jonashackt.edge.weatherbackend.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,7 @@ import de.codecentric.soap.internalmodel.GeneralOutlook;
 import de.codecentric.soap.internalmodel.Weather;
 
 @RestController
-@RequestMapping("/weatherbackend")
+@RequestMapping("/weather")
 public class WeatherBackendController {
 
     private static final Logger LOG = LoggerFactory.getLogger(WeatherBackendController.class);
