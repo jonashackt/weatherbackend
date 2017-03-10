@@ -1,5 +1,7 @@
 package de.jonashackt.weatherbackend.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,11 +14,13 @@ import de.codecentric.soap.internalmodel.Weather;
 @RestController
 @RequestMapping("/weatherbackend")
 public class WeatherBackendController {
-    
+
+    private static final Logger LOG = LoggerFactory.getLogger(WeatherBackendController.class);
+
     @RequestMapping(path = "/general/outlook", method=RequestMethod.POST, produces="application/json")
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody GeneralOutlook generateGeneralOutlook(@RequestBody Weather weather) throws JsonProcessingException {
-        System.out.println("Called Backend");
+        LOG.info("Called Backend");
         /*
          * Some incredible Businesslogic...
          */
