@@ -10,13 +10,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.1.RELEASE</version>
+		<version>1.4.0.RELEASE</version>
 		<relativePath/>
 		<!-- lookup parent from repository -->
 	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
+		<springfox.version>2.4.0</springfox.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -29,6 +30,18 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>optional</scope>
 		</dependency>
+		<!-- Swaggerfox REST Live Docu -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
 		<!-- Testing -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -40,6 +53,19 @@
 			<artifactId>rest-assured</artifactId>
 			<version>2.7.0</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-junit</artifactId>
+			<version>2.0.0.0</version>
+		</dependency>
+
+
+		<!-- UniRest REST library http://unirest.io/java.html -->
+		<dependency>
+			<groupId>com.mashape.unirest</groupId>
+			<artifactId>unirest-java</artifactId>
+			<version>1.4.9</version>
 		</dependency>
 	</dependencies>
 	<build>
