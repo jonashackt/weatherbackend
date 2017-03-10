@@ -10,7 +10,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.3.2.RELEASE</version>
+		<version>1.5.1.RELEASE</version>
 		<relativePath/>
 		<!-- lookup parent from repository -->
 	</parent>
@@ -47,26 +47,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>com.phoenixnap.oss</groupId>
-				<artifactId>springmvc-raml-plugin</artifactId>
-				<version>0.4.1</version>
-				<configuration>
-					<outputRamlFilePath>/target/generated-api/raml/weatherbackendapi.raml</outputRamlFilePath>
-					<createPathIfMissing>true</createPathIfMissing>
-					<restBasePath>http://localhost:8080</restBasePath>
-					<version>0.0.1</version>
-				</configuration>
-				<executions>
-					<execution>
-						<id>generate-springmvc-api-docs</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>generate-springmvc-api-docs</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>

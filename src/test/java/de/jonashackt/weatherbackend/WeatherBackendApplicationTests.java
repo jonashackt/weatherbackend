@@ -1,26 +1,25 @@
 package de.jonashackt.weatherbackend;
 
-import static com.jayway.restassured.RestAssured.*;
-import static org.junit.Assert.*;
-
-import org.apache.http.HttpStatus;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import com.jayway.restassured.http.ContentType;
-
 import de.codecentric.soap.businesslogic.IncredibleLogic;
 import de.codecentric.soap.internalmodel.GeneralOutlook;
 import de.codecentric.soap.internalmodel.Product;
 import de.codecentric.soap.internalmodel.Weather;
+import org.apache.http.HttpStatus;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import static com.jayway.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = WeatherBackendApplication.class)
-@WebIntegrationTest
+@SpringBootTest(
+		classes = WeatherBackendApplication.class,
+		webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT,
+		properties = {"server.port=8080"}
+)
 public class WeatherBackendApplicationTests {
   
 	@Test
@@ -50,10 +49,5 @@ public class WeatherBackendApplicationTests {
 	    
 	    assertEquals("Weimar", outlook.getCity());
     }
-	
-	@Before
-	public void setUp() {
-	    
-	}
 
 }
